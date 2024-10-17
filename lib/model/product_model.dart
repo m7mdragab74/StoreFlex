@@ -1,6 +1,6 @@
 import 'package:store_app/model/rating_model.dart';
 
-class GetAllProductModel {
+class ProductModel {
   final int id;
   final String title;
   final double price;
@@ -8,7 +8,7 @@ class GetAllProductModel {
   final String image;
   final String description;
   final RatingModel rating;
-  GetAllProductModel({
+  ProductModel({
     required this.category,
     required this.id,
     required this.image,
@@ -18,8 +18,8 @@ class GetAllProductModel {
     required this.rating,
   });
 
-  factory GetAllProductModel.fromJson(jsonData) {
-    return GetAllProductModel(
+  factory ProductModel.fromJson(jsonData) {
+    return ProductModel(
       category: jsonData['category'],
       id: jsonData['id'],
       image: jsonData['image'],
