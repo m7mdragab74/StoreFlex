@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/widget/product_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,19 +16,32 @@ class HomePage extends StatelessWidget {
             fontSize: 22,
           ),
         ),
-        actions: const [
-          Icon(
-            Icons.shopping_cart_outlined,
-            color: Colors.black,
-            size: 27,
-          ),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+                color: Colors.black,
+                size: 27,
+              )),
           SizedBox(
-            width: 16,
+            width: 9,
           )
         ],
       ),
-      body: Column(
-        children: [],
+      body: Padding(
+        padding: const EdgeInsets.all(12),
+        child: GridView.builder(
+            clipBehavior: Clip.none,
+            itemCount: 10,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              childAspectRatio: 1.3,
+            ),
+            itemBuilder: (context, index) {
+              return ProductCard();
+            }),
       ),
     );
   }
