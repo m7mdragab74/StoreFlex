@@ -8,6 +8,7 @@ class ProductModel {
   final String image;
   final String description;
   final RatingModel rating;
+
   ProductModel({
     required this.category,
     required this.id,
@@ -23,7 +24,9 @@ class ProductModel {
       category: jsonData['category'],
       id: jsonData['id'],
       image: jsonData['image'],
-      price: jsonData['price'],
+      price: (jsonData['price'] is int)
+          ? (jsonData['price'] as int).toDouble()
+          : jsonData['price'].toDouble(),
       title: jsonData['title'],
       description: jsonData['description'],
       rating: RatingModel.fromJson(jsonData['rating']),

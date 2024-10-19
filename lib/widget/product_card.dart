@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/model/product_model.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
+  ProductCard({
     super.key,
+    required this.productModel,
   });
+  ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +17,11 @@ class ProductCard extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                  blurRadius: 40,
-                  color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 0,
-                  offset: Offset(10, 10)),
+                blurRadius: 40,
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 0,
+                offset: const Offset(10, 10),
+              ),
             ],
           ),
           child: Card(
@@ -29,16 +33,16 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Shoes',
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    productModel.title.substring(0, 6),
+                    style: const TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('\$225'),
+                      Text('\$${productModel.price}'),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.favorite,
                           color: Colors.red,
                           size: 27,
@@ -54,9 +58,15 @@ class ProductCard extends StatelessWidget {
         Positioned(
           top: -100,
           child: Image.network(
-            'https://www.istockphoto.com/photos/t-shirt',
+            productModel.image,
             height: 100,
-            width: 60,
+            width: 100,
+            errorBuilder: (context, error, stackTrace) {
+              return const Icon(
+                Icons.broken_image,
+                size: 100,
+              );
+            },
           ),
         ),
       ],
