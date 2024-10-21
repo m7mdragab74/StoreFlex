@@ -15,8 +15,8 @@ class StoreFlex extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: 'HomePage',
       routes: {
-        'HomePage': (context) => HomePage(),
-        'UpdatePage': (context) => UpdateProductPage(),
+        'HomePage': (context) => const HomePage(),
+        'UpdatePage': (context) => const UpdateProductPage(),
       },
     );
   }

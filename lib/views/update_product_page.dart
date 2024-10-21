@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/services/update_product_services.dart';
@@ -8,7 +10,7 @@ import '../model/product_model.dart';
 import '../widget/custom_button.dart';
 
 class UpdateProductPage extends StatefulWidget {
-  UpdateProductPage({super.key});
+  const UpdateProductPage({super.key});
 
   @override
   State<UpdateProductPage> createState() => _UpdateProductPageState();
