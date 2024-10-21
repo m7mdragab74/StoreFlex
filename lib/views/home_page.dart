@@ -9,53 +9,64 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            'New Trend',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            ),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          'New Trend',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
           ),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.black,
-                  size: 27,
-                )),
-            const SizedBox(
-              width: 9,
-            )
-          ],
         ),
-        body: FutureBuilder<List<ProductModel>>(
-            future: GetAllProductServices().getAllProducts(),
-            builder: (context, snapShot) {
-              if (snapShot.hasData) {
-                List<ProductModel> products = snapShot.data!;
-                return Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: GridView.builder(
-                      clipBehavior: Clip.none,
-                      itemCount: products.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: 1.3,
-                      ),
-                      itemBuilder: (context, index) {
-                        return ProductCard(
-                          productModel: products[index],
-                        );
-                      }),
-                );
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            }));
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.shopping_cart_outlined,
+                color: Colors.black,
+                size: 27,
+              )),
+          const SizedBox(
+            width: 9,
+          )
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 65),
+        child: FutureBuilder<List<ProductModel>>(
+          future: GetAllProductServices().getAllProducts(),
+          builder: (context, snapShot) {
+            if (snapShot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapShot.hasError) {
+              print(snapShot.error);
+              return Center(
+                child: Text('Error: ${snapShot.error}'),
+              );
+            } else if (snapShot.hasData) {
+              List<ProductModel> products = snapShot.data!;
+              return GridView.builder(
+                  clipBehavior: Clip.none,
+                  itemCount: products.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1.5,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 100,
+                  ),
+                  itemBuilder: (context, index) {
+                    return ProductCard(
+                      productModel: products[index],
+                    );
+                  });
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+      ),
+    );
   }
 }

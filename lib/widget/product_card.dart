@@ -65,7 +65,8 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: -100,
+            right: 32,
+            top: -60,
             child: Image.network(
               productModel.image,
               height: 100,
