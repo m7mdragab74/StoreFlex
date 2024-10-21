@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/model/product_model.dart';
-import 'package:store_app/views/update_product_page.dart';
 
 class ProductCard extends StatelessWidget {
   ProductCard({
@@ -13,11 +12,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => UpdateProductPage(),
-          ),
-        );
+        Navigator.pushNamed(context, 'UpdatePage', arguments: productModel);
       },
       child: Stack(
         clipBehavior: Clip.none,

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/services/upgrade_product_services.dart';
 import 'package:store_app/widget/custom_text_field.dart';
 
+import '../model/product_model.dart';
 import '../widget/custom_button.dart';
 
 class UpdateProductPage extends StatelessWidget {
   UpdateProductPage({super.key});
-  String? productName, desc, image;
-  int? price;
+  String? productName, desc, image, price;
   @override
   Widget build(BuildContext context) {
+    ProductModel products =
+        ModalRoute.of(context)!.settings.arguments as ProductModel;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -49,7 +52,7 @@ class UpdateProductPage extends StatelessWidget {
               ),
               CustomTextFieldWidget(
                 onChange: (data) {
-                  price = int.parse(data);
+                  price = data;
                 },
                 textInputType: TextInputType.number,
                 label: 'Price',
@@ -71,7 +74,15 @@ class UpdateProductPage extends StatelessWidget {
                 height: 50,
                 textColor: Colors.white,
                 fontSize: 16,
-                onTap: () {},
+                onTap: () {
+                  UpdateProductServices().upgradeProduct(
+                    title: productName!,
+                    price: price!,
+                    desc: desc!,
+                    image: image!,
+                    category: products.category,
+                  );
+                },
               )
             ],
           ),
