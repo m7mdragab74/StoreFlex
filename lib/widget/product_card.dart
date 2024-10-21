@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/model/product_model.dart';
+import 'package:store_app/views/update_product_page.dart';
 
 class ProductCard extends StatelessWidget {
   ProductCard({
@@ -10,66 +11,75 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 40,
-                color: Colors.grey.withOpacity(0.2),
-                spreadRadius: 0,
-                offset: const Offset(10, 10),
-              ),
-            ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const UpdateProductPage(),
           ),
-          child: Card(
-            elevation: 10,
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    productModel.title.substring(0, 6),
-                    style: const TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('\$${productModel.price}'),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                          size: 27,
-                        ),
-                      )
-                    ],
-                  )
-                ],
+        );
+      },
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 40,
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 0,
+                  offset: const Offset(10, 10),
+                ),
+              ],
+            ),
+            child: Card(
+              elevation: 10,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      productModel.title.substring(0, 6),
+                      style: const TextStyle(color: Colors.grey, fontSize: 16),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('\$${productModel.price}'),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                            size: 27,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
-          top: -100,
-          child: Image.network(
-            productModel.image,
-            height: 100,
-            width: 100,
-            errorBuilder: (context, error, stackTrace) {
-              return const Icon(
-                Icons.broken_image,
-                size: 100,
-              );
-            },
+          Positioned(
+            top: -100,
+            child: Image.network(
+              productModel.image,
+              height: 100,
+              width: 100,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.broken_image,
+                  size: 100,
+                );
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
