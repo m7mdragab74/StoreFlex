@@ -5,18 +5,15 @@ class CustomTextFieldWidget extends StatelessWidget {
     super.key,
     this.label,
     this.onChange,
-    this.obscure,
     this.textInputType,
   });
   String? label;
   void Function(String)? onChange;
-  bool? obscure;
   TextInputType? textInputType;
   @override
   Widget build(BuildContext context) {
     return TextField(
       keyboardType: textInputType,
-      obscureText: obscure!,
       cursorColor: Colors.black,
       cursorErrorColor: Colors.black,
       onChanged: onChange,

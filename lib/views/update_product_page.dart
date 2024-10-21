@@ -21,6 +21,7 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
   Widget build(BuildContext context) {
     ProductModel products =
         ModalRoute.of(context)!.settings.arguments as ProductModel;
+
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
@@ -85,11 +86,11 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                   height: 50,
                   textColor: Colors.white,
                   fontSize: 16,
-                  onTap: () {
+                  onTap: () async {
                     isLoading = true;
                     setState(() {});
                     try {
-                      UpdateProduct(products);
+                      await updateProduct(products);
                       showSnackBar(context, 'Success Update Product');
                     } catch (e) {
                       print(e.toString());
@@ -106,12 +107,13 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
     );
   }
 
-  void UpdateProduct(ProductModel products) {
-    UpdateProductServices().upgradeProduct(
-      title: productName!,
-      price: price!,
-      desc: desc!,
-      image: image!,
+  Future<void> updateProduct(ProductModel products) async {
+    await UpdateProductServices().upgradeProduct(
+      id: products.id,
+      title: productName == null ? products.title : productName!,
+      price: price == null ? products.price.toString() : price!,
+      desc: desc == null ? products.description : desc!,
+      image: image == null ? products.image : image!,
       category: products.category,
     );
   }

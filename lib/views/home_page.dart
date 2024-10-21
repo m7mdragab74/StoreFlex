@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
               );
             } else if (snapShot.hasError) {
               return Center(
-                child: Text('Error: ${snapShot.error}'),
+                child: Text('Error fetching data: ${snapShot.error}'),
               );
             } else if (snapShot.hasData) {
               List<ProductModel> products = snapShot.data!;

@@ -13,6 +13,7 @@ class StoreFlex extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: 'HomePage',
       routes: {
         'HomePage': (context) => HomePage(),
         'UpdatePage': (context) => UpdateProductPage(),
