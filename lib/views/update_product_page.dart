@@ -4,8 +4,9 @@ import 'package:store_app/widget/custom_text_field.dart';
 import '../widget/custom_button.dart';
 
 class UpdateProductPage extends StatelessWidget {
-  const UpdateProductPage({super.key});
-
+  UpdateProductPage({super.key});
+  String? productName, desc, image;
+  int? price;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,47 +23,58 @@ class UpdateProductPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 19,
-            ),
-            const CustomFormTextFieldWidget(
-              label: 'Product Name',
-              obscure: false,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            const CustomFormTextFieldWidget(
-              label: 'Description',
-              obscure: false,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            const CustomFormTextFieldWidget(
-              label: 'Price',
-              obscure: false,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            const CustomFormTextFieldWidget(
-              label: 'Image',
-              obscure: false,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomButtonWidget(
-              label: 'Update',
-              height: 50,
-              textColor: Colors.white,
-              fontSize: 16,
-              onTap: () {},
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 19,
+              ),
+              CustomTextFieldWidget(
+                onChange: (data) {
+                  productName = data;
+                },
+                label: 'Product Name',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              CustomTextFieldWidget(
+                onChange: (data) {
+                  desc = data;
+                },
+                label: 'Description',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              CustomTextFieldWidget(
+                onChange: (data) {
+                  price = int.parse(data);
+                },
+                textInputType: TextInputType.number,
+                label: 'Price',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              CustomTextFieldWidget(
+                onChange: (data) {
+                  image = data;
+                },
+                label: 'Image',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              CustomButtonWidget(
+                label: 'Update',
+                height: 50,
+                textColor: Colors.white,
+                fontSize: 16,
+                onTap: () {},
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -41,7 +41,6 @@ class HomePage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (snapShot.hasError) {
-              print(snapShot.error);
               return Center(
                 child: Text('Error: ${snapShot.error}'),
               );
@@ -62,7 +61,9 @@ class HomePage extends StatelessWidget {
                     );
                   });
             } else {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: Text('No Data Available'),
+              );
             }
           },
         ),
