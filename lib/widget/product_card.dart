@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_app/model/product_model.dart';
 
 class ProductCard extends StatelessWidget {
@@ -40,7 +41,7 @@ class ProductCard extends StatelessWidget {
                   children: [
                     Text(
                       productModel.title.substring(0, 6),
-                      style: const TextStyle(color: Colors.grey, fontSize: 16),
+                      style: TextStyle(color: Colors.grey, fontSize: 16.sp),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,8 +67,8 @@ class ProductCard extends StatelessWidget {
             top: -60,
             child: Image.network(
               productModel.image,
-              height: 100,
-              width: 100,
+              height: 100.h,
+              width: 100.w,
               errorBuilder: (context, error, stackTrace) {
                 return const Icon(
                   Icons.broken_image,

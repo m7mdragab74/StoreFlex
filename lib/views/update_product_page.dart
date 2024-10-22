@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/services/update_product_services.dart';
 import 'package:store_app/widget/custom_text_field.dart';
@@ -39,12 +40,12 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
           backgroundColor: Colors.transparent,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: EdgeInsets.all(12),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(
-                  height: 19,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 20,
                 ),
                 CustomTextFieldWidget(
                   onChange: (data) {
@@ -52,8 +53,8 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                   },
                   label: 'Product Name',
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 50,
                 ),
                 CustomTextFieldWidget(
                   onChange: (data) {
@@ -61,8 +62,8 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                   },
                   label: 'Description',
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 50,
                 ),
                 CustomTextFieldWidget(
                   onChange: (data) {
@@ -71,8 +72,8 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                   textInputType: TextInputType.number,
                   label: 'Price',
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 50,
                 ),
                 CustomTextFieldWidget(
                   onChange: (data) {
@@ -80,14 +81,14 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                   },
                   label: 'Image',
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 50,
                 ),
                 CustomButtonWidget(
                   label: 'Update',
-                  height: 50,
+                  height: 50.h,
                   textColor: Colors.white,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   onTap: () async {
                     isLoading = true;
                     setState(() {});
